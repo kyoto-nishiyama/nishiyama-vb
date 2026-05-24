@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<!-- saved from url=(0241)file:///C:/Users/%E5%8F%B8%E6%B3%95%E6%9B%B8%E5%A3%AB%E5%B1%B1%E6%9C%AC%E6%B5%A9%E4%B8%96%E4%BA%8B%E5%8B%99%E6%89%80/Downloads/%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%20%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB%20v2.0.html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京都西山記録システム マニュアル v2.0</title>
+<style>
+  :root {
+    --navy:#1a2744; --navy-light:#243260;
+    --gold:#c9a84c; --gold-light:#e8c97a;
+    --green:#2d7a4f; --red:#b83232;
+    --orange:#c0532a; --purple:#5a3aaa;
+    --teal:#1a6a7a; --bg:#f5f3ee;
+    --card:#fff; --border:#ddd8cc;
+    --text:#1a2744; --muted:#6a7a9a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Hiragino Sans','Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.75;}
+
+  .hero{background:linear-gradient(145deg,var(--navy) 0%,#2a4a8a 100%);color:white;padding:36px 20px 32px;text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:rgba(201,168,76,.35);border-radius:50%;}
+  .hero::after{content:'';position:absolute;bottom:-30px;left:-30px;width:130px;height:130px;background:rgba(201,168,76,.28);border-radius:50%;}
+  .hero-ball{font-size:48px;margin-bottom:10px;display:block;animation:bounce 2s infinite ease-in-out;}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .hero h1{font-size:22px;font-weight:800;margin-bottom:6px;}
+  .hero p{font-size:13px;color:#d0e8ff;margin-bottom:12px;}
+  .hero-badge{display:inline-block;background:var(--gold);color:var(--navy);font-size:12px;font-weight:800;padding:5px 14px;border-radius:20px;}
+
+  .toc{background:var(--card);margin:14px;border-radius:16px;padding:16px;box-shadow:0 3px 16px rgba(0,0,0,.08);}
+  .toc-title{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:10px;}
+  .toc-list{list-style:none;}
+  .toc-list li{border-bottom:1px solid var(--border);}
+  .toc-list li:last-child{border-bottom:none;}
+  .toc-list a{display:flex;align-items:center;gap:10px;padding:9px 4px;color:var(--navy);text-decoration:none;font-size:13px;font-weight:600;}
+  .toc-num{width:24px;height:24px;background:var(--navy);color:white;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;}
+
+  .section{margin:0 14px 18px;}
+  .section-card{background:var(--card);border-radius:16px;padding:18px;box-shadow:0 3px 16px rgba(0,0,0,.07);}
+  .section-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--bg);}
+  .section-num{width:32px;height:32px;background:var(--navy);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0;}
+  .section-title{font-size:17px;font-weight:800;color:var(--navy);}
+
+  h3{font-size:13px;font-weight:800;color:var(--navy);margin:14px 0 6px;}
+  p{font-size:13px;color:#444;margin-bottom:7px;line-height:1.7;}
+
+  .steps{display:flex;flex-direction:column;gap:8px;margin:8px 0;}
+  .step{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border-radius:10px;padding:10px;}
+  .step-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+  .step-num{width:24px;height:24px;background:var(--navy);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;}
+  .step-body .step-title{font-weight:800;font-size:13px;margin-bottom:2px;color:var(--navy);}
+  .step-body .step-desc{font-size:12px;color:#555;line-height:1.6;}
+
+  .tip{background:#fffbea;border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:10px 12px;margin:8px 0;font-size:12px;color:#5a4000;}
+  .note{background:#f0f6ff;border-left:4px solid #4a7fd4;border-radius:0 10px 10px 0;padding:10px 12px;margin:8px 0;font-size:12px;color:#1a3a6a;}
+  .warn{background:#fff0f0;border-left:4px solid var(--red);border-radius:0 10px 10px 0;padding:10px 12px;margin:8px 0;font-size:12px;color:#6a0000;}
+  .good{background:#f0faf4;border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:10px 12px;margin:8px 0;font-size:12px;color:#1a4a2a;}
+  .tip strong,.note strong,.warn strong,.good strong{display:block;font-weight:800;margin-bottom:3px;}
+
+  .flow{display:flex;flex-direction:column;gap:4px;margin:10px 0;}
+  .flow-step{border-radius:10px;padding:9px 12px;font-size:12px;font-weight:700;color:white;}
+  .flow-step.navy{background:var(--navy);}
+  .flow-step.purple{background:var(--purple);}
+  .flow-step.green{background:var(--green);}
+  .flow-step.orange{background:var(--orange);}
+  .flow-step.red{background:var(--red);}
+  .flow-step.teal{background:var(--teal);}
+  .flow-step.gold{background:var(--gold);color:var(--navy);}
+  .flow-step.gray{background:#888;}
+  .flow-arrow{text-align:center;font-size:14px;color:var(--muted);}
+
+  .btn-demo{display:grid;gap:5px;margin:8px 0;}
+  .btn-demo.col3{grid-template-columns:repeat(3,1fr);}
+  .btn-demo.col2{grid-template-columns:repeat(2,1fr);}
+  .mock{padding:11px 4px;border-radius:9px;font-size:11px;font-weight:700;text-align:center;color:white;line-height:1.3;}
+  .mock.atk{background:#c0532a;} .mock.atkc{background:#e07040;} .mock.atkl{background:#888;}
+  .mock.blk{background:#a07820;} .mock.gray{background:#888;}
+  .mock.opp{background:#5a3aaa;} .mock.oppl{background:#b83232;}
+  .mock.oh{background:#c0532a;} .mock.mb{background:#4a7fd4;}
+  .mock.s{background:#c9a84c;color:#333;} .mock.l{background:#2d7a4f;}
+
+  .tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0;border-radius:8px;overflow:hidden;}
+  .tbl th{background:var(--navy);color:white;padding:8px 9px;text-align:left;font-weight:700;font-size:11px;}
+  .tbl td{padding:8px 9px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;}
+  .tbl tr:last-child td{border-bottom:none;}
+  .tbl tr:nth-child(even) td{background:var(--bg);}
+
+  .tab-demo{display:flex;background:var(--navy-light);border-radius:8px;overflow:hidden;margin:8px 0;overflow-x:auto;}
+  .tab-item{flex-shrink:0;padding:7px 9px;font-size:10px;font-weight:700;color:rgba(255,255,255,.5);border-bottom:3px solid transparent;}
+  .tab-item.active{color:var(--gold-light);border-bottom-color:var(--gold);}
+
+  .undo-table{background:var(--bg);border-radius:12px;overflow:hidden;margin:8px 0;}
+  .undo-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--border);font-size:12px;}
+  .undo-row:last-child{border-bottom:none;}
+  .undo-from{font-weight:700;color:var(--navy);}
+  .undo-arrow{color:var(--muted);font-size:16px;text-align:center;}
+  .undo-to{color:var(--orange);font-weight:700;}
+
+  .court-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;max-width:200px;margin:8px 0;}
+  .court-cell{padding:9px 4px;border-radius:8px;text-align:center;font-size:11px;font-weight:700;color:white;line-height:1.3;}
+
+  .rot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;max-width:220px;margin:8px 0;}
+  .rot-cell{padding:8px 4px;border-radius:8px;text-align:center;font-size:11px;font-weight:700;color:white;}
+
+  .footer{background:var(--navy);color:white;text-align:center;padding:26px 16px 34px;margin-top:14px;}
+  .footer-ball{font-size:30px;margin-bottom:7px;}
+  .footer-title{font-size:14px;font-weight:800;margin-bottom:3px;}
+  .footer-sub{font-size:11px;opacity:.6;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-ball">🏐</span>
+  <h1>京都西山記録システム<br>マニュアル</h1>
+  <p>オフライン版 ― インターネット接続なしで全機能が動く！<br>試合中の記録からデータ分析まで</p>
+  <span class="hero-badge">v2.0 オフライン版</span>
+</div>
+
+<!-- もくじ -->
+<div class="toc">
+  <div class="toc-title">📋 もくじ</div>
+  <ul class="toc-list">
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s1"><span class="toc-num">1</span>画面構成・タブ説明</a></li>
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s2"><span class="toc-num">2</span>試合前の準備</a></li>
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s3"><span class="toc-num">3</span>クイック入力の使い方</a></li>
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s4"><span class="toc-num">4</span>↩ 戻る・進む ↪ の使い方</a></li>
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s5"><span class="toc-num">5</span>スコアボタン（＋西山・＋相手）</a></li>
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s6"><span class="toc-num">6</span>選手データ入力テーブル</a></li>
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s7"><span class="toc-num">7</span>ローテーション管理・リベロ</a></li>
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s8"><span class="toc-num">8</span>新しい試合を始めるとき</a></li>
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s9"><span class="toc-num">9</span>試合管理・データ保存</a></li>
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s10"><span class="toc-num">10</span>統計タブの見方</a></li>
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s11"><span class="toc-num">11</span>ローテーション別分析</a></li>
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s12"><span class="toc-num">12</span>日別推移表</a></li>
+    <li><a href="file:///C:/Users/Owner/Downloads/%E4%BA%AC%E9%83%BD%E8%A5%BF%E5%B1%B1%E8%A8%98%E9%8C%B2%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0_%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_v2.html#s13"><span class="toc-num">13</span>よくある質問</a></li>
+  </ul>
+</div>
+
+<!-- 1 画面構成 -->
+<div class="section" id="s1">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">1</div><div class="section-title">画面構成・タブ説明</div></div>
+    <div class="tab-demo">
+      <div class="tab-item active">試合記録</div>
+      <div class="tab-item">統計</div>
+      <div class="tab-item">ROT別</div>
+      <div class="tab-item">手入力</div>
+      <div class="tab-item">試合管理</div>
+      <div class="tab-item">選手設定</div>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-icon">🏟</div><div class="step-body"><div class="step-title">試合記録</div><div class="step-desc">メイン画面。クイック入力・スコア・コート図・ROT分析・選手データ入力。試合中はここ！</div></div></div>
+      <div class="step"><div class="step-icon">📊</div><div class="step-body"><div class="step-title">統計</div><div class="step-desc">選手別統計（最大8名・スクロール）・グラフ・ゾーン別統計・ROT別得点数・日別推移表。</div></div></div>
+      <div class="step"><div class="step-icon">🔄</div><div class="step-body"><div class="step-title">ローテーション別（ROT別）</div><div class="step-desc">S1〜S6ごとの得点率・コート図・ゾーン別攻撃（円グラフ）・選手データ。</div></div></div>
+      <div class="step"><div class="step-icon">✍️</div><div class="step-body"><div class="step-title">手入力</div><div class="step-desc">手書き記録を直接入力して統計に反映。</div></div></div>
+      <div class="step"><div class="step-icon">🗂</div><div class="step-body"><div class="step-title">試合管理</div><div class="step-desc">試合ごとにデータを保存・読み込み。対戦相手別の統計分析もできる。</div></div></div>
+      <div class="step"><div class="step-icon">⚙️</div><div class="step-body"><div class="step-title">選手設定</div><div class="step-desc">メンバー登録・ポジション設定。追加・変更すると自動保存。</div></div></div>
+    </div>
+    <div class="note"><strong>📱 試合記録タブの画面構成（上から）</strong>
+      ① 試合管理バー（💾保存・＋新しい試合）<br>
+      ② セット選択バー＋🔄リセット<br>
+      ③ ⚡ クイック入力パネル（サーブ権バッジ＋切替ボタン）<br>
+      ④ スコア表示＋コート図＋ROT分析ボックス<br>
+      ⑤ 選手データ入力テーブル（①〜⑥＋L1＋L2）
+    </div>
+  </div>
+</div>
+
+<!-- 2 準備 -->
+<div class="section" id="s2">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">2</div><div class="section-title">試合前の準備</div></div>
+
+    <h3>⚙️ STEP 1：選手を登録する</h3>
+    <p>「選手設定」タブで名前とポジションを入力して「追加」を押す。自動保存される。</p>
+    <table class="tbl">
+      <tbody><tr><th>ポジション</th><th>入力値</th><th>バッジ色</th></tr>
+      <tr><td>アウトサイド（OH）</td><td>outside</td><td>赤系</td></tr>
+      <tr><td>ミドル（MB）</td><td>middle</td><td>青系</td></tr>
+      <tr><td>セッター（S）</td><td>setter</td><td>金系</td></tr>
+      <tr><td>オポジット（OPP）</td><td>opposite</td><td>紫系</td></tr>
+      <tr><td>リベロ（L）</td><td>libero</td><td>緑系</td></tr>
+    </tbody></table>
+    <div class="tip"><strong>💡 リベロの登録</strong>ポジションを「libero」に設定すると、セット情報のリベロ選択プルダウンに表示される。</div>
+
+    <h3>🟣 STEP 2：リベロを設定する</h3>
+    <p>試合記録タブのセット情報でリベロ1・2を選択する。</p>
+    <table class="tbl">
+      <tbody><tr><th></th><th>交代するMBの位置</th><th>使用タイミング</th></tr>
+      <tr><td><strong>リベロ1</strong></td><td>⑤・⑥にいるMB</td><td>サーブ権あり時</td></tr>
+      <tr><td><strong>リベロ2</strong></td><td>①・⑤・⑥にいるMB</td><td>サーブ権なし時（SC時）</td></tr>
+    </tbody></table>
+
+    <h3>🏐 STEP 3：スタメンをコートに配置する</h3>
+    <p>コート図の①〜⑥をタップして選手を選ぶ。</p>
+    <div class="note"><strong>📌 コートの位置（ネット側が上）</strong>
+      ④フロント左　③フロント中　②フロント右　← ネット側<br>
+      ⑤バック左　　⑥バック中　　①バック右　　← バック側（①がサーブ位置）
+    </div>
+
+    <h3>🎯 STEP 4：セット情報を設定する</h3>
+    <p>対戦相手名・先攻（西山サーブ）／後攻（レシーブ）を設定。レシーブを選ぶと自動でサーブ権なしになる。</p>
+
+    <h3>📊 S番号（ローテーション番号）について</h3>
+    <table class="tbl">
+      <tbody><tr><th>S番号</th><th>セッターの位置</th><th>説明</th></tr>
+      <tr><td><strong>S1</strong></td><td>①バック右</td><td>サーブ権あり時の基本ローテーション</td></tr>
+      <tr><td><strong>S2</strong></td><td>②フロント右</td><td></td></tr>
+      <tr><td><strong>S3</strong></td><td>③フロント中</td><td></td></tr>
+      <tr><td><strong>S4</strong></td><td>④フロント左</td><td></td></tr>
+      <tr><td><strong>S5</strong></td><td>⑤バック左</td><td></td></tr>
+      <tr><td><strong>S6</strong></td><td>⑥バック中</td><td></td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<!-- 3 クイック入力 -->
+<div class="section" id="s3">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">3</div><div class="section-title">クイック入力の使い方</div></div>
+    <p>画面上部に常に表示されるステップ式パネル。右上に「✔サーブ権あり」または「⚡サーブ権なし」バッジと「切替」ボタンがある。</p>
+
+    <h3>✔ サーブ権ありの時（西山サーブ）</h3>
+    <div class="flow">
+      <div class="flow-step purple">① 誰がサーブ？（コートから選手をタップ）</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step purple">② サーブ結果：得点🎯 ／ 継続 ／ 失点💥</div>
+      <div class="flow-arrow">↓ 継続の場合 ラリーが続く間は③〜⑤を繰り返す</div>
+      <div class="flow-step orange">③ 誰が？（コートの選手または相手ミス・相手得点）</div>
+      <div class="flow-arrow">↓ 選手を選んだ場合</div>
+      <div class="flow-step orange">④ 何が？（アタック得・継・失 ／ ブロック得 ／ その他失点）</div>
+      <div class="flow-arrow">↓ アタックの場合</div>
+      <div class="flow-step teal">⑤ 打った場所は？（レフト・センター・ライト・バック・場所不明）</div>
+      <div class="flow-arrow">↓ 得点または失点が出たら</div>
+      <div class="flow-step green">✅ ラリー終了 → 「次のラリー ▶」を押す</div>
+    </div>
+
+    <h3>⚡ サーブ権なしの時（相手サーブ）</h3>
+    <div class="flow">
+      <div class="flow-step teal">① 相手サーブミス🎯 または 誰がサーブキャッチ？</div>
+      <div class="flow-arrow">↓ 選手を選んだ場合</div>
+      <div class="flow-step teal">② SC結果：AB（優/良）／ C（可）／ 失点💥</div>
+      <div class="flow-arrow">↓ AB・Cの場合 以降は上の③〜⑤と同じ</div>
+      <div class="flow-step orange">③ 誰が？→ ④ 何が？→ ⑤ 場所？のループ</div>
+    </div>
+
+    <h3>📌「誰が？」画面の選手ボタン配置</h3>
+    <p>1行目（ネット側）はポジション順（OH→MB→S/OPP）に自動並び替え。2行目（バック側）はコート順のまま固定。</p>
+    <div class="court-grid">
+      <div class="court-cell" style="background:#c0532a;">OH</div>
+      <div class="court-cell" style="background:#4a7fd4;">MB</div>
+      <div class="court-cell" style="background:#c9a84c;color:#333;">S</div>
+      <div class="court-cell" style="background:#4aaf6a;">⑤BL</div>
+      <div class="court-cell" style="background:#4aaf6a;">⑥BC</div>
+      <div class="court-cell" style="background:#4aaf6a;">①BR</div>
+    </div>
+    <div class="btn-demo col2" style="margin-top:4px;max-width:200px;">
+      <div class="mock opp">相手ミス</div>
+      <div class="mock oppl">相手得点</div>
+    </div>
+
+    <h3>📌「何が？」画面のボタン</h3>
+    <div class="btn-demo col3" style="max-width:300px;">
+      <div class="mock atk">アタック得</div>
+      <div class="mock atkc">アタック継</div>
+      <div class="mock atkl">アタック失</div>
+    </div>
+    <div class="btn-demo col2" style="max-width:300px;">
+      <div class="mock blk">ブロック得</div>
+      <div class="mock gray">その他失点</div>
+    </div>
+
+    <div class="tip"><strong>💡 各ボタンの動作</strong>
+      アタック得・継・失 → ゾーン選択（場所は？）画面へ<br>
+      ブロック得 → 記録してラリー継続（誰が？に戻る）<br>
+      その他失点 → 相手+1点でラリー終了<br>
+      相手ミス → 西山+1点でラリー終了<br>
+      相手得点 → 相手+1点でラリー終了
+    </div>
+
+    <h3>🔄 サーブ権切替ボタン</h3>
+    <p>クイック入力パネルとコート図の両方に「切替」ボタンがある。得点がわからなくなりサーブ権がずれた時に手動で修正できる。リベロも正しく再適用される。</p>
+
+    <h3>🔄 ローテーション修正</h3>
+    <p>コート図横の「ローテーション▶」ボタンで手動で1つ進める。↩ 戻るボタンでも修正可能。</p>
+  </div>
+</div>
+
+<!-- 4 戻る・進む -->
+<div class="section" id="s4">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">4</div><div class="section-title">↩ 戻る・進む ↪ の使い方</div></div>
+    <p>クイック入力パネルと選手データ入力テーブルの両方にある。共通の履歴を使っているのでどちらから操作しても同じ。最大200回まで戻れる。</p>
+
+    <h3>↩ 戻るボタン — 正確に1ステップ前に戻る</h3>
+    <div class="undo-table">
+      <div class="undo-row"><div class="undo-from">次のラリー▶押した後</div><div class="undo-arrow">↩</div><div class="undo-to">ラリー終了画面</div></div>
+      <div class="undo-row"><div class="undo-from">ラリー終了画面</div><div class="undo-arrow">↩</div><div class="undo-to">場所選択（○○：打った場所は？）</div></div>
+      <div class="undo-row"><div class="undo-from">場所選択</div><div class="undo-arrow">↩</div><div class="undo-to">何が？（○○ → 何が？）</div></div>
+      <div class="undo-row"><div class="undo-from">何が？</div><div class="undo-arrow">↩</div><div class="undo-to">誰が？</div></div>
+      <div class="undo-row"><div class="undo-from">誰が？（ループ中・アタック後）</div><div class="undo-arrow">↩</div><div class="undo-to">場所選択（前のアタック）</div></div>
+      <div class="undo-row"><div class="undo-from">誰が？（最初のラリー）</div><div class="undo-arrow">↩</div><div class="undo-to">サーブ結果 / SC結果</div></div>
+      <div class="undo-row"><div class="undo-from">サーブ結果（○○のサーブ結果）</div><div class="undo-arrow">↩</div><div class="undo-to">誰がサーブ？（選手選択）</div></div>
+      <div class="undo-row"><div class="undo-from">SC結果（○○のキャッチ結果）</div><div class="undo-arrow">↩</div><div class="undo-to">誰がサーブキャッチ？</div></div>
+    </div>
+
+    <h3>↪ 進むボタン</h3>
+    <p>戻りすぎた時に1ステップ進める。新しい操作をすると進む履歴はリセットされる。</p>
+
+    <div class="tip"><strong>💡 ボタンの数字（N）</strong>「↩(3)」のように残り回数が表示される。0になるとボタンがグレーになる。</div>
+    <div class="note"><strong>📌 スコア・ローテーション・選手データも同時に戻る</strong>クイック入力の画面だけでなく、その操作で変わったすべての状態が正確に元に戻る。</div>
+  </div>
+</div>
+
+<!-- 5 スコアボタン -->
+<div class="section" id="s5">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">5</div><div class="section-title">スコアボタン（＋西山・＋相手）</div></div>
+    <p>コート図横のスコアボタン。ラリーについていけない時に素早く得失点理由を記録できる。</p>
+
+    <h3>＋西山（得点）を押すと</h3>
+    <div class="btn-demo col3" style="max-width:300px;">
+      <div class="mock atk">アタック得</div>
+      <div class="mock blk">ブロック得</div>
+      <div class="mock opp">相手ミス</div>
+    </div>
+    <h3>＋相手（失点）を押すと</h3>
+    <div class="btn-demo col3" style="max-width:300px;">
+      <div class="mock atkl">アタック失</div>
+      <div class="mock gray">ブロック失</div>
+      <div class="mock gray">ディグ失</div>
+    </div>
+    <div class="btn-demo col2" style="max-width:200px;">
+      <div class="mock gray">トス失</div>
+      <div class="mock oppl">相手得点</div>
+    </div>
+    <div class="tip"><strong>💡 スキップ（理由なし）</strong>理由を入力しなくてもスコアだけ加算できる。速い展開でも得点だけは追える！</div>
+  </div>
+</div>
+
+<!-- 6 選手データ入力テーブル -->
+<div class="section" id="s6">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">6</div><div class="section-title">選手データ入力テーブル</div></div>
+    <p>クイック入力と並行して使える直接入力テーブル。修正にも便利。</p>
+
+    <h3>📋 表示される選手</h3>
+    <p>リベロ交代前の元の①〜⑥メンバー＋リベロ1＋リベロ2が表示される。</p>
+    <table class="tbl">
+      <tbody><tr><th>バッジ</th><th>意味</th></tr>
+      <tr><td>① ② ③ ④ ⑤ ⑥（紺色）</td><td>コートのその番号のポジション（リベロと交代しているMBも番号で表示）</td></tr>
+      <tr><td>L（緑色）</td><td>リベロ（リベロ1・リベロ2）</td></tr>
+      <tr><td>控（グレー枠）</td><td>ベンチ</td></tr>
+    </tbody></table>
+    <p style="font-size:11px;color:var(--muted);">コートに入っている選手の行は黄色でハイライト表示。</p>
+
+    <h3>📋 記録できる項目</h3>
+    <table class="tbl">
+      <tbody><tr><th>列</th><th>内容</th></tr>
+      <tr><td>サーブ 得/継/失</td><td>サーブの得点・継続・失点</td></tr>
+      <tr><td>アタック 得/継/失</td><td>アタックの得点・継続・失点</td></tr>
+      <tr><td>BLK得</td><td>ブロック得点</td></tr>
+      <tr><td>サーブキャッチ AB/C/失</td><td>サーブキャッチ 優良・可・失点</td></tr>
+    </tbody></table>
+    <div class="note"><strong>📌 便利な機能</strong>
+      ・氏名列が左端に固定（横スクロールしても見える）<br>
+      ・✎ボタンで修正モード（数値を−1する）<br>
+      ・↩ 戻る(N) / 進む ↪(N) ボタンで履歴操作
+    </div>
+  </div>
+</div>
+
+<!-- 7 ローテーション管理 -->
+<div class="section" id="s7">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">7</div><div class="section-title">ローテーション管理・リベロ</div></div>
+
+    <h3>🔄 自動更新</h3>
+    <table class="tbl">
+      <tbody><tr><th>操作</th><th>起こること</th></tr>
+      <tr><td>西山得点</td><td>西山+1点。サーブ権なし→あり時にローテーション</td></tr>
+      <tr><td>相手得点</td><td>相手+1点。サーブ権あり→なし</td></tr>
+      <tr><td>ローテーション▶</td><td>手動でローテーションを1つ進める</td></tr>
+      <tr><td>切替ボタン</td><td>サーブ権を手動で切り替え（ずれた時の修正用）</td></tr>
+    </tbody></table>
+
+    <h3>🟣 リベロ自動交代</h3>
+    <p>リベロ1・2を設定するとMBと自動で交代する。試合中のリベロ変更は以下のどちらでもOK：</p>
+    <div class="good"><strong>✅ 試合中のリベロ変更方法</strong>
+      ・セット情報のリベロ選択プルダウンから変更<br>
+      ・コート図の丸をタップして選手変更
+    </div>
+
+    <h3>📊 ROT分析ボックス</h3>
+    <p>コート図の右に2行3列で表示。コートの配置に合った並び順：</p>
+    <div class="rot-grid">
+      <div class="rot-cell" style="background:#c0532a;">S4<br><span style="font-size:10px;">④FL</span></div>
+      <div class="rot-cell" style="background:#c0532a;">S3<br><span style="font-size:10px;">③FC</span></div>
+      <div class="rot-cell" style="background:#c0532a;">S2<br><span style="font-size:10px;">②FR</span></div>
+      <div class="rot-cell" style="background:var(--navy);">S5<br><span style="font-size:10px;">⑤BL</span></div>
+      <div class="rot-cell" style="background:var(--navy);">S6<br><span style="font-size:10px;">⑥BC</span></div>
+      <div class="rot-cell" style="background:var(--navy);">S1<br><span style="font-size:10px;">①BR</span></div>
+    </div>
+    <p style="font-size:11px;color:var(--muted);">各ボタンに得点率を色分けで表示。タップするとROT別タブに飛ぶ。現在のローテーションが強調表示。</p>
+  </div>
+</div>
+
+<!-- 8 新しい試合 -->
+<div class="section" id="s8">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">8</div><div class="section-title">新しい試合を始めるとき</div></div>
+    <p>試合記録タブ上部の「＋ 新しい試合を開始」ボタンを押す。</p>
+    <div class="flow">
+      <div class="flow-step navy">「現在の試合を保存しますか？」</div>
+      <div class="flow-arrow">↓ OK</div>
+      <div class="flow-step teal">試合名を入力して保存 → 新しい試合スタート</div>
+      <div class="flow-arrow">↓ キャンセル</div>
+      <div class="flow-step orange">「⚠️ データが失われますがよろしいですか？」</div>
+      <div class="flow-arrow">↓ OK</div>
+      <div class="flow-step red">保存せずに新しい試合スタート</div>
+      <div class="flow-arrow">↓ キャンセル</div>
+      <div class="flow-step gold">最初の画面に戻る</div>
+    </div>
+    <div class="good"><strong>✅ スタメン・リベロは引き継がれる！</strong>スコアとデータだけリセット。1日に複数校と試合する時に便利。クイック入力の履歴もリセット。</div>
+    <div class="tip"><strong>💡 セットを追加するには</strong>セット選択バーの「＋ セット追加」ボタンで2セット目・3セット目を追加できる。</div>
+    <h3>🔄 リセットボタン</h3>
+    <p>セット選択バー右端の「🔄」ボタンで現在のセットのスコアと選手データだけリセット。スタメン・対戦相手名は変わらない。↩ 戻るで取り消し可能。</p>
+  </div>
+</div>
+
+<!-- 9 試合管理 -->
+<div class="section" id="s9">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">9</div><div class="section-title">試合管理・データ保存</div></div>
+
+    <h3>📱 自動保存</h3>
+    <p>操作するたびにブラウザに自動保存される。ページを閉じても次回開いたら復元される。</p>
+    <div class="warn"><strong>⚠️ 注意！</strong>ブラウザの「閲覧データ削除」をすると自動保存データも消える。大事な試合データは必ず「💾 現在の試合を保存」で保存しておこう！</div>
+
+    <h3>💾 試合管理タブでできること</h3>
+    <div class="steps">
+      <div class="step"><div class="step-icon">💾</div><div class="step-body"><div class="step-title">現在の試合を保存</div><div class="step-desc">試合名をつけて保存。自動で日時と対戦相手名が入力される。</div></div></div>
+      <div class="step"><div class="step-icon">📂</div><div class="step-body"><div class="step-title">読み込む</div><div class="step-desc">保存した試合を呼び出して確認・編集できる。</div></div></div>
+      <div class="step"><div class="step-icon">🔍</div><div class="step-body"><div class="step-title">対戦相手別フィルター</div><div class="step-desc">「○○高校（3セット）」ボタンをタップ→その相手との全セットを絞り込んで統計分析。</div></div></div>
+      <div class="step"><div class="step-icon">📈</div><div class="step-body"><div class="step-title">全試合を統計で分析</div><div class="step-desc">保存した全試合を合算してシーズン全体の傾向を確認。</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 10 統計 -->
+<div class="section" id="s10">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">10</div><div class="section-title">統計タブの見方</div></div>
+
+    <h3>📊 選手別統計テーブル（全選手・8名ずつスクロール）</h3>
+    <table class="tbl">
+      <tbody><tr><th>指標</th><th>計算式</th><th>色の目安</th></tr>
+      <tr><td>アタック決定率</td><td>得÷打数</td><td>🟢50%以上 🟡30〜49% 🔴30%未満</td></tr>
+      <tr><td>アタック効果率</td><td>（得−失）÷打数</td><td>🟢30%以上 🟡10〜29% 🔴10%未満</td></tr>
+      <tr><td>サーブ得点率</td><td>得÷打数</td><td>🟢40%以上 🟡20〜39% 🔴20%未満</td></tr>
+      <tr><td>SC AB率</td><td>AB÷総数</td><td>🟢60%以上 🟡40〜59% 🔴39%未満</td></tr>
+    </tbody></table>
+    <div class="tip"><strong>💡 セット絞り込み</strong>統計タブ上部のチェックボックスで特定のセットだけ選択してグラフ・テーブルを表示できる。特定の試合だけ分析したい時に便利！</div>
+
+    <h3>📊 グラフ表示（7種類）</h3>
+    <p>アタック決定率・効果率・サーブ得点率・効果率・SC AB率・アタック打数割合・得点割合。オフライン版ではグラフも完全動作！</p>
+
+    <h3>🏐 アタックゾーン別統計（打数がある選手・6名ずつスクロール）</h3>
+    <p>選手ごとにレフト・センター・ライト・バック・不明の打数・決定数・決定率・得/継/失を表示。クイック入力でゾーンを記録した試合のデータが集計される。</p>
+
+    <h3>🔄 ローテーション別 得点テーブル</h3>
+    <p>S1〜S6の得点数・失点数・得点率・アタック打数・決定率・効果率・ゾーン別選択率（左・中・右・後）を一覧表示。</p>
+  </div>
+</div>
+
+<!-- 11 ローテーション別 -->
+<div class="section" id="s11">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">11</div><div class="section-title">ローテーション別 決定率・攻撃選択</div></div>
+    <p>「ROT別」タブでS1〜S6の窓をタップすると詳細が開く。</p>
+
+    <div class="steps">
+      <div class="step"><div class="step-icon">🟡</div><div class="step-body"><div class="step-title">窓の色・枠</div><div class="step-desc">押した窓：ゴールド枠。現在のローテーション：ネイビー枠。緑=得点率60%以上、赤=40%未満。</div></div></div>
+      <div class="step"><div class="step-icon">🏐</div><div class="step-body"><div class="step-title">コート図（ヘッダー右横）</div><div class="step-desc">そのROT時のコート配置（SC時のリベロ2も反映）。セッターはゴールド枠、リベロ2は紫枠で強調。</div></div></div>
+      <div class="step"><div class="step-icon">📋</div><div class="step-body"><div class="step-title">全体合計・セット別タブ</div><div class="step-desc">「全体合計」で全セット合算、「1セット」「2セット」で個別確認。</div></div></div>
+      <div class="step"><div class="step-icon">🎯</div><div class="step-body"><div class="step-title">ゾーン別攻撃選択（円グラフ）</div><div class="step-desc">そのROT時のレフト・センター・ライト・バックの選択率と決定率。クイック入力でゾーンを記録した試合から集計。</div></div></div>
+      <div class="step"><div class="step-icon">👤</div><div class="step-body"><div class="step-title">選手データ</div><div class="step-desc">コート図の表示順（④③② / ⑤⑥① / リベロ2）でそのROT時のアタック・サーブ・SCデータを表示。クイック入力で記録したデータが蓄積される。</div></div></div>
+    </div>
+
+    <div class="note"><strong>📌 ゾーン・選手データの蓄積について</strong>クイック入力でアタックのゾーンを記録するたびに自動集計される。試合を重ねるほど精度が上がる。</div>
+  </div>
+</div>
+
+<!-- 12 日別推移 -->
+<div class="section" id="s12">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">12</div><div class="section-title">日別推移表</div></div>
+    <p>統計タブの「📅 日別推移」で保存した試合の時系列変化を確認できる。</p>
+    <div class="steps">
+      <div class="step"><div class="step-icon">📈</div><div class="step-body"><div class="step-title">チーム全体の推移</div><div class="step-desc">日付順に対戦相手・ATK決定率・効果率・SRV得点率・効果率・SC AB率が並ぶ。↑緑=前回より上昇、↓赤=前回より下降、→=変化なし。</div></div></div>
+      <div class="step"><div class="step-icon">👤</div><div class="step-body"><div class="step-title">選手別ATK決定率の推移（6名ずつスクロール）</div><div class="step-desc">各選手が試合ごとに決定率が上がっているか一覧で比較。右端の「合計」列で全体の実力も確認。</div></div></div>
+    </div>
+    <div class="tip"><strong>💡 現在の試合★</strong>保存していない現在の試合は最右列に「現在の試合★」として表示される。試合後に保存すると次回から正式な列になる。</div>
+  </div>
+</div>
+
+<!-- 13 FAQ -->
+<div class="section" id="s13">
+  <div class="section-card">
+    <div class="section-header"><div class="section-num">13</div><div class="section-title">よくある質問</div></div>
+
+    <h3>❓ 選手を追加したい</h3>
+    <p>「選手設定」タブで名前とポジションを入力して「追加」を押す。自動保存される。</p>
+
+    <h3>❓ リベロがプルダウンに出てこない</h3>
+    <p>「選手設定」タブでそのリベロのポジションが「libero」になっているか確認。</p>
+
+    <h3>❓ ローテーションやサーブ権がずれた</h3>
+    <p>ローテーションのズレ→「ローテーション▶」で調整。サーブ権のズレ→クイック入力パネルまたはコート図の「切替」ボタンをタップ。</p>
+
+    <h3>❓ 入力を間違えた</h3>
+    <p>「↩ 戻る」ボタンで1ステップずつ戻れる。スコア・ローテーション・選手データがすべて元に戻る。最大200回。</p>
+
+    <h3>❓ ゾーン別・ROT別選手データが表示されない</h3>
+    <p>クイック入力でアタックのゾーン（レフト・センター等）を記録した試合のデータのみ集計される。今後の試合から蓄積していく。</p>
+
+    <h3>❓ セットが終わって次のセットを始めたい</h3>
+    <p>セット選択バーの「＋ セット追加」ボタンを押す。</p>
+
+    <h3>❓ 試合データを保存するには</h3>
+    <p>試合記録タブ上部の「💾 現在の試合を保存」を押して試合名をつけて保存。「試合管理」タブでいつでも読み込める。</p>
+
+    <h3>❓ スマホで古いバージョンが動いている</h3>
+    <p>ダウンロードフォルダの古いHTMLファイルを削除して、最新ファイルをダウンロードし直す。ただし試合データは事前に保存してから行うこと。</p>
+
+    <h3>❓ ブラウザのデータを消去したら試合データが消える？</h3>
+    <p>消える。大事な試合データは「💾 現在の試合を保存」で試合管理に保存しておくこと。</p>
+
+    <h3>❓ インターネットがなくても使える？</h3>
+    <p>このオフライン版はChart.js（グラフ）を含めすべての機能がインターネット接続なしで動作する。機内モード・Wi-Fiなし・データなしでもOK！</p>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-ball">🏐</div>
+  <div class="footer-title">京都西山記録システム v2.0 オフライン版</div>
+  <div class="footer-sub">京都西山高校女子バレーボール部<br>データを積み上げて、もっと強くなろう！</div>
+</div>
+
+
+
+</body></html>
